@@ -34,7 +34,8 @@ class AuthenticatedSessionController extends Controller
 
         $role = User::where('email',$request->email)->first();
 
-        if($role->isEmpty()){
+
+        if($role == NULL){
             return redirect()->back();
         }
 
