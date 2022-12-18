@@ -24,7 +24,8 @@ class UserController extends Controller
             'updateInfo',
             'taskGet','taskUpdate','taskGetUser','taskGetNote','taskStoreNoteUser','taskUpdateUser',
             'todolistGet','todolistStore','todolistUpdate',
-            'events','eventStore','eventUpdate','eventDelete'
+            'events','eventStore','eventUpdate','eventDelete',
+            'contacts'
         ]]);
     }
 
@@ -568,6 +569,27 @@ class UserController extends Controller
             return response()->json([
                 'message' => "Something went really wrong!",
                 'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    public function contacts(Request $request)
+    {
+
+        try {
+            $contacts = User::where('id','!=',$request->user_id)->where('company_NO',$request->company_NO)->orderBy('full_name','asc')->get();
+
+            return response()->json([
+                'status' => 'success',
+                'contacts' => $contacts,
+            ], 200);
+
+        } catch (\Exception $e) {
+            // Return Json Response
+            return response()->json([
+                'message' => "Something went really wrong!",
+                'error' => $e->getMessage()
+
             ], 500);
         }
     }

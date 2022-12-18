@@ -58,6 +58,9 @@ Route::group([
         Route::post('update_info', [UserController::class, 'updateInfo']);
 
 
+        //contacts
+        Route::post('contacts', [UserController::class, 'contacts']);
+
         //task
         Route::post('task_get', [UserController::class, 'taskGet']);
         Route::post('task_get_user', [UserController::class, 'taskGetUser']);
