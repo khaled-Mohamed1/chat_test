@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Event;
 use App\Models\Task;
 use App\Models\TaskNote;
 use App\Models\ToDoList;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -21,7 +23,8 @@ class UserController extends Controller
         $this->middleware('auth:api', ['except' => [
             'updateInfo',
             'taskGet','taskUpdate','taskGetUser','taskGetNote','taskStoreNoteUser','taskUpdateUser',
-            'todolistGet','todolistStore','todolistUpdate'
+            'todolistGet','todolistStore','todolistUpdate',
+            'events','eventStore','eventUpdate','eventDelete'
         ]]);
     }
 
@@ -390,5 +393,183 @@ class UserController extends Controller
         }
     }
 
+
+    //events
+    public function events(Request $request)
+    {
+
+        try {
+            $events = Event::where('user_id',$request->user_id)->latest()->get();
+
+
+            return response()->json([
+                'status' => 'success',
+                'events' => $events,
+            ], 200);
+
+        } catch (\Exception $e) {
+            // Return Json Response
+            return response()->json([
+                'message' => "Something went really wrong!",
+                'error' => $e->getMessage()
+
+            ], 500);
+        }
+    }
+
+    public function eventStore(Request $request)
+    {
+        DB::beginTransaction();
+        try {
+            // Find user
+            $user = User::find($request->user_id);
+
+            if (!$user) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'لا يوجد مستخدم بهذا الإسم'
+                ], 404);
+            }
+
+
+
+            $validateUser = Validator::make(
+                $request->all(),
+                [
+                    'start_date' => 'required|date|before:end_date',
+                    'end_date' => 'required|date|after:start_date',
+                    'start_time' => 'required',
+                    'end_time' => 'required',
+                    'title' => 'required'
+                ],
+                [
+                    'start_date.required' => 'يجب ادخال تاريخ بداية الحدث',
+                    'start_date.date' => 'الحقل يجب انا يكون تاريخ',
+                    'start_date.before' => 'تحديد تاريخ البداية قبل تاريخ النهاية',
+                    'end_date.required' => 'يجب ادخال تاريخ نهاية الحدث',
+                    'end_date.date' => 'الحقل يجب انا يكون تاريخ',
+                    'end_date.after' => 'تحديد تاريخ النهاية بعد تاريخ البداية',
+                    'start_time.time' => 'حقل وقت بداية الحدث يجب انا يكون بهذا الترميز (hh:mm:ss).',
+                    'start_time.required' => 'يجب ادخال وقت تاريخ بداية الحدث',
+                    'end_time.time' => 'حقل وقت نهاية الحدث يجب انا يكون بهذا الترميز (hh:mm:ss).',
+                    'end_time.required' => 'يجب ادخال وقت تاريخ بداية الحدث',
+                    'title.required' => 'يجب ادخال وصف المهمة!',
+                ]
+            );
+
+            if ($validateUser->fails()) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'validation error',
+                    'errors' => $validateUser->errors()
+                ], 401);
+            }
+
+//            let new_start = start + ' ' + start_time;
+//                    let new_end = end + ' ' + end_time;
+
+            $start_date = $request->start_date . ' ' . $request->start_time;
+            $end_date = $request->end_date . ' ' . $request->end_time;
+
+            $event = Event::create([
+                'user_id' => $request->user_id,
+                'title' => $request->title,
+                'start_date' => $start_date,
+                'end_date' => $end_date,
+                'start_time' => $request->start_time,
+                'end_time' => $request->end_time,
+            ]);
+
+            DB::commit();
+            return response()->json([
+                'status' => 'success',
+                'event' => $event,
+            ], 200);
+
+        } catch (\Exception $e) {
+            // Return Json Response
+            DB::rollBack();
+            return response()->json([
+                'message' => "Something went really wrong!",
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    public function eventUpdate(Request $request)
+    {
+
+
+        DB::beginTransaction();
+        try {
+
+            $event = Event::find($request->event_id);
+
+            if (!$event) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'لا يوجد حدث بهذا الإسم'
+                ], 404);
+            }
+
+            $event->status = true;
+            $event->save();
+
+            DB::commit();
+            // Return Json Response
+            return response()->json([
+                'status' => 'success',
+                'message' => "تم تعديل هذا الحدث بنجاح",
+                'event' => $event,
+                'error_number' => 200,
+
+            ], 200);
+
+        } catch (\Exception $e) {
+            // Return Json Response
+            DB::rollBack();
+            return response()->json([
+                'message' => "Something went really wrong!",
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
+
+    public function eventDelete(Request $request)
+    {
+
+
+        DB::beginTransaction();
+        try {
+
+            $event = Event::find($request->event_id);
+
+            if (!$event) {
+                return response()->json([
+                    'status' => 'error',
+                    'message' => 'لا يوجد حدث بهذا الإسم'
+                ], 404);
+            }
+
+            $event->delete();
+
+            DB::commit();
+            // Return Json Response
+            return response()->json([
+                'status' => 'success',
+                'message' => "تم حذف هذا الحدث بنجاح",
+                'error_number' => 200,
+
+            ], 200);
+
+        } catch (\Exception $e) {
+            // Return Json Response
+            DB::rollBack();
+            return response()->json([
+                'message' => "Something went really wrong!",
+                'error' => $e->getMessage()
+            ], 500);
+        }
+    }
 
 }

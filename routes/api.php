@@ -57,6 +57,8 @@ Route::group([
     Route::prefix('user')->group(function () {
         Route::post('update_info', [UserController::class, 'updateInfo']);
 
+
+        //task
         Route::post('task_get', [UserController::class, 'taskGet']);
         Route::post('task_get_user', [UserController::class, 'taskGetUser']);
         Route::post('task_get_note', [UserController::class, 'taskGetNote']);
@@ -64,9 +66,16 @@ Route::group([
         Route::post('task_update_user', [UserController::class, 'taskUpdateUser']);
 //        Route::post('task_update', [UserController::class, 'taskUpdate']);
 
+        //todolist
         Route::post('todolist', [UserController::class, 'todolistGet']);
         Route::post('todolist/store', [UserController::class, 'todolistStore']);
         Route::post('todolist/status', [UserController::class, 'todolistUpdate']);
+
+        //event
+        Route::post('events', [UserController::class, 'events']);
+        Route::post('event/store', [UserController::class, 'eventStore']);
+        Route::post('event/status', [UserController::class, 'eventUpdate']);
+        Route::post('event/delete', [UserController::class, 'eventDelete']);
 
 
     });
