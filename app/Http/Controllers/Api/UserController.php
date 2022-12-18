@@ -77,7 +77,7 @@ class UserController extends Controller
                         $storage->delete('employee/' . $user->image);
                     $imageName = Str::random(32) . "." . $request->image->getClientOriginalExtension();
 
-                    $user->image = 'https://velatest.pal-lady.com/public/storage/app/public/employee/' . $imageName;
+                    $user->image = 'https://velatest.pal-lady.com/storage/app/public/employee/' . $imageName;
 
                     $storage->put('employee/' . $imageName, file_get_contents($request->image));
                 }else{
