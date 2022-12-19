@@ -466,17 +466,11 @@ class UserController extends Controller
                 ], 401);
             }
 
-//            let new_start = start + ' ' + start_time;
-//                    let new_end = end + ' ' + end_time;
-
-            $start_date = $request->start_date . ' ' . $request->start_time;
-            $end_date = $request->end_date . ' ' . $request->end_time;
-
             $event = Event::create([
                 'user_id' => $request->user_id,
                 'title' => $request->title,
-                'start_date' => $start_date,
-                'end_date' => $end_date,
+                'start_date' => $request->start_date,
+                'end_date' => $request->end_date,
                 'start_time' => $request->start_time,
                 'end_time' => $request->end_time,
             ]);

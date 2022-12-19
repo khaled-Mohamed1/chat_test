@@ -18,9 +18,9 @@ class CreateEventsTable extends Migration
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
             $table->string('title')->nullable();
-            $table->dateTime('start_date')->nullable();
+            $table->date('start_date')->nullable();
             $table->time('start_time')->nullable();
-            $table->dateTime('end_date')->nullable();
+            $table->date('end_date')->nullable();
             $table->time('end_time')->nullable();
             $table->boolean('status')->default(false);
             $table->timestamps();
