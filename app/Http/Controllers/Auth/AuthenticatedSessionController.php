@@ -41,7 +41,6 @@ class AuthenticatedSessionController extends Controller
 
         if($role->role_id == 1 || $role->role_id == 2){
 
-
             $request->authenticate();
 
             $request->session()->regenerate();
