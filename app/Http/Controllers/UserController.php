@@ -17,6 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
+        //test
         if(auth()->user()->role_id == 1){
             $users = User::where('role_id',2)->orderBy('id','DESC')->paginate(5);
 
