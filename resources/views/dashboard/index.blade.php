@@ -129,7 +129,7 @@
                                   <span class="nav-link-name">التقارير</span>
                               </a>
                           </li>
-{{--                          @hasrole('Super Admin')--}}
+                          @hasrole('Super Admin')
 
                           <li class="nav-item">
                               <a id="tubes-link" class="nav-link" title="الإتصال">
@@ -143,6 +143,8 @@
                                   <span class="nav-link-name">الإجتماع</span>
                               </a>
                           </li>
+
+                          @endhasrole
 
                           <li class="nav-item">
                               <a id="admins-link" class="nav-link" title="المشرفين">
@@ -158,7 +160,6 @@
 {{--                              </a>--}}
 {{--                          </li>--}}
 
-{{--                          @endhasrole--}}
 
                           <li class="nav-item">
                               <a id="users-link" class="nav-link" title="الموظفين">

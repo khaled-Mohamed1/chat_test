@@ -47,33 +47,6 @@
 </div>
 <h1 class="heading">المشرفين</h1>
 <div class="table-container section-style">
-{{--    <div style="--}}
-{{--          display: flex;--}}
-{{--          align-items: center;--}}
-{{--          margin-bottom: 10px;--}}
-{{--          gap: 20px;--}}
-{{--        ">--}}
-{{--        <a--}}
-{{--            href="{{route('admins.create')}}"--}}
-{{--            class="btn btn-primary"--}}
-{{--        >+ إضافة مشرف</a>--}}
-{{--        <div class="input-group" style="width: 300px; height: 38px">--}}
-{{--          <span class="input-group-text" id="basic-addon1">--}}
-{{--            <button style="border: none">--}}
-{{--              <i class="fa-solid fa-magnifying-glass"></i>--}}
-{{--            </button>--}}
-{{--          </span>--}}
-{{--            <input--}}
-{{--                type="text"--}}
-{{--                class="form-control"--}}
-{{--                placeholder="بحث"--}}
-{{--                aria-label="Username"--}}
-{{--                aria-describedby="basic-addon1"--}}
-{{--            />--}}
-{{--        </div>--}}
-
-{{--    </div>--}}
-
     <div style="display: flex; justify-content: space-between; align-items: center;">
         <div
             style="
@@ -83,6 +56,7 @@
             gap: 20px;
           "
         >
+            @hasrole('Super Admin')
             <a
                 href="{{route('admins.create')}}"
                 class="btn btn-primary"
@@ -101,8 +75,12 @@
                     aria-label="Username"
                     aria-describedby="basic-addon1"
                 />
+
             </div>
+            @endhasrole
+
         </div>
+
         <div>
             <a href="{{route('tasks')}}" class="btn btn-primary">عرض المهام</a>
         </div>

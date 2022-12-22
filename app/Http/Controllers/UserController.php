@@ -17,7 +17,13 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::where('role_id',2)->orderBy('id','DESC')->paginate(5);
+        if(auth()->user()->role_id == 1){
+            $users = User::where('role_id',2)->orderBy('id','DESC')->paginate(5);
+
+        }else{
+            $users = User::where('id', auth()->user()->id)->paginate(5);
+        }
+
         return view('dashboard/src/admins',compact('users'));
     }
 
