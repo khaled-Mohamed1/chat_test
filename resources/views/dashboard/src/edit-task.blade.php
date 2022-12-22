@@ -13,8 +13,8 @@
         rel="stylesheet"
     />
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{asset('dashboard/css/bootstrap.rtl.min.css')}}" />
-    <link rel="stylesheet" href="{{asset('dashboard/css/forms-style.css')}}" />
+    <link rel="stylesheet" href="{{asset('public/dashboard/css/bootstrap.rtl.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('public/dashboard/css/forms-style.css')}}" />
 </head>
 <body>
 <div class="table-container section-style">
@@ -61,40 +61,40 @@
             @error('description')
             <span class="text-danger">{{$message}}</span>
             @enderror</div>
-{{--        <div class="col-md-12">--}}
-{{--            إضافة مستخدمين:--}}
-{{--            --}}{{--            <input type="text" name="user_id" class="form-control mb-2 mt-2" placeholder="بحث عن مستخدمين" />--}}
-{{--            <div class="users-wrapper">--}}
-{{--                @forelse($users  as $key => $user)--}}
-{{--                    <label>--}}
-{{--                        <input type="checkbox"  name="user_id[]" class="form-check-input @error('user_id') is-invalid @enderror" value="{{$user->id}}"/>--}}
-{{--                        {{$user->full_name}}--}}
-{{--                    </label>--}}
-{{--                @empty--}}
-{{--                    <label>لا يوجد موظفين</label>--}}
-{{--                @endforelse--}}
+        {{--        <div class="col-md-12">--}}
+        {{--            إضافة مستخدمين:--}}
+        {{--            --}}{{--            <input type="text" name="user_id" class="form-control mb-2 mt-2" placeholder="بحث عن مستخدمين" />--}}
+        {{--            <div class="users-wrapper">--}}
+        {{--                @forelse($users  as $key => $user)--}}
+        {{--                    <label>--}}
+        {{--                        <input type="checkbox"  name="user_id[]" class="form-check-input @error('user_id') is-invalid @enderror" value="{{$user->id}}"/>--}}
+        {{--                        {{$user->full_name}}--}}
+        {{--                    </label>--}}
+        {{--                @empty--}}
+        {{--                    <label>لا يوجد موظفين</label>--}}
+        {{--                @endforelse--}}
 
 
-{{--            </div>--}}
-{{--            @error('user_id')--}}
-{{--            <span class="text-danger">{{$message}}</span>--}}
-{{--            @enderror--}}
+        {{--            </div>--}}
+        {{--            @error('user_id')--}}
+        {{--            <span class="text-danger">{{$message}}</span>--}}
+        {{--            @enderror--}}
 
-{{--        </div>--}}
-<div class="col-md-12"></div>
+        {{--        </div>--}}
+        <div class="col-md-12"></div>
         <div style="display: flex; justify-content: space-around">
-    <button class="btn btn-primary">موافق</button>
-    <button
-        type="button"
-        onclick="history.back()"
-        class="btn btn-secondary"
-    >
-        رجوع
-    </button>
+            <button class="btn btn-primary">موافق</button>
+            <button
+                type="button"
+                onclick="history.back()"
+                class="btn btn-secondary"
+            >
+                رجوع
+            </button>
+        </div>
+    </form>
 </div>
-</form>
-</div>
-<script src="{{asset('dashboard/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('public/dashboard/js/bootstrap.bundle.min.js')}}"></script>
 <script>
     window.onload = function () {
         setTimeout(() => {

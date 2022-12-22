@@ -13,8 +13,8 @@
         rel="stylesheet"
     />
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{asset('dashboard/css/bootstrap.rtl.min.css')}}" />
-    <link rel="stylesheet" href="{{asset('dashboard/css/forms-style.css')}}" />
+    <link rel="stylesheet" href="{{asset('public/dashboard/css/bootstrap.rtl.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('public/dashboard/css/forms-style.css')}}" />
 </head>
 <body>
 <div class="table-container section-style">
@@ -63,7 +63,7 @@
             @enderror</div>
         <div class="col-md-12">
             إضافة مستخدمين:
-{{--            <input type="text" name="user_id" class="form-control mb-2 mt-2" placeholder="بحث عن مستخدمين" />--}}
+            {{--            <input type="text" name="user_id" class="form-control mb-2 mt-2" placeholder="بحث عن مستخدمين" />--}}
             <div class="users-wrapper">
                 @forelse($users  as $key => $user)
                     <label>
@@ -94,7 +94,7 @@
         </div>
     </form>
 </div>
-<script src="{{asset('dashboard/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('public/dashboard/js/bootstrap.bundle.min.js')}}"></script>
 <script>
     window.onload = function () {
         setTimeout(() => {

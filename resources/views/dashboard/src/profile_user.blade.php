@@ -13,8 +13,8 @@
         rel="stylesheet"
     />
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{asset('dashboard/css/bootstrap.rtl.min.css')}}" />
-    <link rel="stylesheet" href="{{asset('dashboard/css/forms-style.css')}}" />
+    <link rel="stylesheet" href="{{asset('public/dashboard/css/bootstrap.rtl.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('public/dashboard/css/forms-style.css')}}" />
     <style>
         small {
             color: #a4a4a4;
@@ -25,7 +25,7 @@
 <div class="table-container section-style">
     <img
         src="
-        {{asset('storage/employee/'. $user->image)}}"
+        {{$user->image}}"
         alt="elliot"
         width="150px"
         height="150px"
@@ -57,7 +57,7 @@
 
     </div>
 </div>
-<script src="{{asset('dashboard/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('public/dashboard/js/bootstrap.bundle.min.js')}}"></script>
 <script>
     window.onload = function () {
         setTimeout(() => {

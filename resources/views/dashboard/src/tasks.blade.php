@@ -13,11 +13,11 @@
         rel="stylesheet"
     />
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="{{asset('dashboard/css/all.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('public/dashboard/css/all.min.css')}}" />
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{asset('dashboard/css/bootstrap.rtl.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('public/dashboard/css/bootstrap.rtl.min.css')}}" />
     <!-- Custom styles -->
-    <link rel="stylesheet" href="{{asset('dashboard/css/tables-style.css')}}" />
+    <link rel="stylesheet" href="{{asset('public/dashboard/css/tables-style.css')}}" />
 </head>
 <body>
 <div class="loading-screen">
@@ -192,8 +192,8 @@
     </div>
 @endforeach
 
-<script src="{{asset('dashboard/js/bootstrap.bundle.min.js')}}"></script>
-<script src="{{asset('dashboard/js/all.min.js')}}"></script>
-<script src="{{asset('dashboard/js/tables-script.js')}}"></script>
+<script src="{{asset('public/dashboard/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('public/dashboard/js/all.min.js')}}"></script>
+<script src="{{asset('public/dashboard/js/tables-script.js')}}"></script>
 </body>
 </html>

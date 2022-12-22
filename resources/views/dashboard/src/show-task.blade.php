@@ -13,8 +13,8 @@
         rel="stylesheet"
     />
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{asset('dashboard/css/bootstrap.rtl.min.css')}}" />
-    <link rel="stylesheet" href="{{asset('dashboard/css/forms-style.css')}}" />
+    <link rel="stylesheet" href="{{asset('public/dashboard/css/bootstrap.rtl.min.css')}}" />
+    <link rel="stylesheet" href="{{asset('public/dashboard/css/forms-style.css')}}" />
     <style>
         small {
             color: #a4a4a4;
@@ -130,58 +130,58 @@
         <div class="modal-content">
             <form id="task-add-form{{$task->id}}" method="POST" action="{{ route('tasks.addNote', ['task' => $task->id]) }}">
                 @csrf
-            <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">الملاحظات</h1>
-                <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                ></button>
-            </div>
-            <div class="modal-body">
-                <div class="row">
-                    <div class="col-md-12 mb-4">
-                        <label for="desc" class="form-label">إضافة ملاحظة:</label>
-                        <textarea
-                            name="note"
-                            id="desc"
-                            cols="20"
-                            rows="2"
-                            class="form-control @error('note') is-invalid @enderror"
-                            placeholder="إضافة ملاحظة"
-                        ></textarea>
-                        @error('note')
-                        <span class="text-danger">{{$message}}</span>
-                        @enderror
-                    </div>
-                    <div class="col-md-12">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">الملاحظات</h1>
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    ></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-12 mb-4">
+                            <label for="desc" class="form-label">إضافة ملاحظة:</label>
+                            <textarea
+                                name="note"
+                                id="desc"
+                                cols="20"
+                                rows="2"
+                                class="form-control @error('note') is-invalid @enderror"
+                                placeholder="إضافة ملاحظة"
+                            ></textarea>
+                            @error('note')
+                            <span class="text-danger">{{$message}}</span>
+                            @enderror
+                        </div>
+                        <div class="col-md-12">
 
-                        <div class="note-wrapper">
-                            @foreach($task->notes as $note)
-                                <div class="note-40 {{$note->admin_id == NULL ? '': 'admin-note'}}">
-                                    <small class="text-muted">{{$note->admin_id == NULL ? $note->UserTask->full_name : $note->AdminTask->full_name}}</small>
-                                    <div class="note">{{$note->note}}</div>
-                                    <small class="text-muted">{{$note->created_at->format('m:d h:i')}}</small>
-                                </div>
-                            @endforeach
+                            <div class="note-wrapper">
+                                @foreach($task->notes as $note)
+                                    <div class="note-40 {{$note->admin_id == NULL ? '': 'admin-note'}}">
+                                        <small class="text-muted">{{$note->admin_id == NULL ? $note->UserTask->full_name : $note->AdminTask->full_name}}</small>
+                                        <div class="note">{{$note->note}}</div>
+                                        <small class="text-muted">{{$note->created_at->format('m:d h:i')}}</small>
+                                    </div>
+                                @endforeach
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="modal-footer" style="display: flex; justify-content: space-around">
-                <button
-                    type="button"
-                    class="btn btn-secondary"
-                    data-bs-dismiss="modal">
-                    الغاء
-                </button>
-                <a class="btn btn-danger" href="{{ route('logout') }}"
-                   onclick="event.preventDefault(); document.getElementById('task-add-form{{$task->id}}').submit();">
-                    اضافة
-                </a>
+                <div class="modal-footer" style="display: flex; justify-content: space-around">
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+                        الغاء
+                    </button>
+                    <a class="btn btn-danger" href="{{ route('logout') }}"
+                       onclick="event.preventDefault(); document.getElementById('task-add-form{{$task->id}}').submit();">
+                        اضافة
+                    </a>
 
-            </div>
+                </div>
             </form>
 
         </div>
@@ -226,7 +226,7 @@
     </div>
 </div>
 
-<script src="{{asset('dashboard/js/bootstrap.bundle.min.js')}}"></script>
+<script src="{{asset('public/dashboard/js/bootstrap.bundle.min.js')}}"></script>
 <script>
     window.onload = function () {
         setTimeout(() => {
