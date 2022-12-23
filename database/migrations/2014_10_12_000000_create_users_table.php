@@ -27,7 +27,7 @@ class CreateUsersTable extends Migration
             $table->string('company_NO')->nullable();
             $table->string('company_name')->nullable();
             $table->integer('role_id')->nullable();
-            $table->boolean('status')->default(true);
+            $table->string('status')->default('offline');
             $table->boolean('private_status')->default(false);
             $table->rememberToken();
             $table->softDeletes();
